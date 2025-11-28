@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home - Tri Arrow Resources</title>
+<title>Contact - Tri Arrow Resources</title>
 
 <style>
   body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333;}
 
-  /* HERO BANNER */
+  /* HERO BANNER - Same as index */
   .hero-section {
     position: relative;
     width: 100%;
@@ -46,7 +46,7 @@
     .hero-content p {font-size: 1rem;}
   }
 
-  /* NAVIGATION */
+  /* NAVIGATION - Same as index */
   nav {
     background:#004a99;
     padding:12px;
@@ -67,7 +67,7 @@
   }
   nav a:hover {background:#003366;}
 
-  /* PAGE SECTIONS */
+  /* PAGE SECTIONS - Same as index */
   .section {
     max-width:1100px;
     margin:auto;
@@ -85,136 +85,13 @@
     margin-bottom:20px;
     text-align:center;
   }
-  h3 {margin-top:15px; color:#004a99;}
-
-  /* Content Cards with Animation */
-  .content-card {
-    background: #f8f9fa;
-    padding: 25px;
-    margin: 20px 0;
-    border-left: 4px solid #0066cc;
-    border-radius: 0 8px 8px 0;
-    opacity: 0;
-    transform: translateX(-20px);
-    transition: all 0.6s ease;
-  }
   
-  ul {line-height:1.8; font-size:17px; padding-left:20px;}
-  li {margin-bottom:8px;}
-
-  /* PDF BUTTON */
-  .pdf-container {
-    margin-bottom:40px; 
-    text-align:center; 
-    opacity:0; 
-    transform: translateY(20px);
-    transition: all 0.6s ease;
-  }
-  .pdf-link {
-    display:inline-block;
-    margin-top:15px; 
-    padding:14px 25px;
-    background:#0066cc; 
-    color:white;
-    text-decoration:none; 
-    border-radius:8px;
-    font-weight:bold; 
-    font-size:16px;
-    transition:0.3s;
-  }
-  .pdf-link:hover {
-    background:#004a99; 
-    transform: scale(1.05);
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-  }
-
-  /* GALLERY */
-  .landscape-gallery {
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-    gap:20px; 
-    margin-bottom:30px;
-  }
-  .portrait-gallery {
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
-    gap:15px; 
-    margin-top:20px;
-  }
-
-  .image-card {
-    position:relative;
-    cursor:pointer;
-    overflow:hidden;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    opacity:0;
-    transform: translateY(20px);
-  }
-  .image-card img {
-    width:100%; 
-    height:200px;
-    object-fit:cover;
-    display:block; 
-    transition: transform 0.3s;
-  }
-  .image-card:hover img {transform: scale(1.08);}
-  .image-card:hover {
-    box-shadow:0 6px 14px rgba(0,0,0,0.2);
-    transform: translateY(-5px);
-  }
-  .caption {
-    position:absolute;
-    bottom:0; 
-    left:0;
-    width:100%;
-    padding:10px;
-    background:rgba(0,0,0,0.6);
-    color:white; 
-    text-align:center;
-    font-size:14px;
-    opacity:0; 
-    transition:opacity 0.3s;
-  }
-  .image-card:hover .caption {opacity:1;}
-
-  /* LIGHTBOX */
-  .lightbox {
-    display:none;
-    position:fixed;
-    z-index:999;
-    padding-top:60px;
-    inset:0;
-    overflow:auto;
-    background-color: rgba(0,0,0,0.9);
-  }
-  .lightbox-content {
-    margin:auto;
-    display:block;
-    max-width:90%;
-    max-height:80%;
-    border-radius:10px;
-    box-shadow:0 0 25px rgba(0,0,0,0.5);
-  }
-  .lightbox-close {
-    position:absolute;
-    top:20px; 
-    right:35px;
-    color:#fff; 
-    font-size:40px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:0.3s;
-  }
-  .lightbox-close:hover {color:#bbb;}
-
   /* Contact Info */
   .contact-info {
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:15px;
+    gap:20px;
     font-size:18px;
     line-height:1.6;
   }
@@ -230,6 +107,56 @@
     transform: translateX(-20px);
     transition: all 0.6s ease;
   }
+  
+  /* Form Styling */
+  form {
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+  .form-group {
+    opacity:0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+  }
+  label {
+    font-weight:bold;
+    display:block;
+    margin-bottom:8px;
+    color:#004a99;
+  }
+  input, textarea {
+    padding:14px;
+    border-radius:8px;
+    border:1px solid #ddd;
+    font-size:16px;
+    width:100%;
+    box-sizing:border-box;
+    transition:0.3s;
+  }
+  input:focus, textarea:focus {
+    outline:none;
+    border-color:#0066cc;
+    box-shadow:0 0 0 3px rgba(0,102,204,0.1);
+  }
+  button {
+    padding:16px 30px;
+    background:#0066cc;
+    color:white;
+    font-weight:bold;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:17px;
+    transition:0.3s;
+    opacity:0;
+    transform: translateY(20px);
+  }
+  button:hover {
+    background:#004a99;
+    transform: scale(1.03) translateY(-2px);
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+  }
 
   footer {
     text-align:center;
@@ -239,7 +166,7 @@
     color:white;
   }
 
-  /* ANIMATIONS */
+  /* ANIMATIONS - Same as index */
   @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
   @keyframes slideDown {from{transform:translateY(-30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
 
@@ -247,16 +174,16 @@
 </head>
 <body>
 
-<!-- HERO BANNER -->
+<!-- HERO BANNER - Same as index -->
 <header class="hero-section">
   <div class="overlay"></div>
   <div class="hero-content">
-    <h1>Tri Arrow Resources</h1>
-    <p>Professional Mechanical & Piping Solutions</p>
+    <h1>Contact Us</h1>
+    <p>Get in touch with Tri Arrow Resources</p>
   </div>
 </header>
 
-<!-- NAVBAR -->
+<!-- NAVBAR - Same as index -->
 <nav>
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
@@ -264,135 +191,36 @@
   <a href="contact.html">Contact</a>
 </nav>
 
-<!-- COMPANY OVERVIEW -->
 <div class="section">
-  <h2>Company Overview</h2>
-  <div class="content-card">
-    <p>
-      Tri Arrow Resources specializes in piping works, mechanical installations,
-      and integrated engineering solutions for water and wastewater treatment plants.
-      We deliver high-quality, safe, and reliable project execution for municipal,
-      industrial, and commercial clients.
-    </p>
-  </div>
-</div>
-
-<!-- VISION & MISSION -->
-<div class="section">
-  <h2>Vision & Mission</h2>
-  
-  <div class="content-card">
-    <h3>Vision</h3>
-    <p>To be a trusted leader in water treatment mechanical and piping solutions.</p>
-  </div>
-
-  <div class="content-card">
-    <h3>Mission</h3>
-    <ul>
-      <li>Deliver safe, durable, and efficient piping systems.</li>
-      <li>Adopt innovative engineering methods.</li>
-      <li>Build long-term partnerships through quality and integrity.</li>
-      <li>Support environmental sustainability.</li>
-    </ul>
-  </div>
-</div>
-
-<!-- PORTFOLIO -->
-<div class="section">
-  <h2>Our Work Portfolio</h2>
-
-  <div class="pdf-container">
-    <p>Click below to view our detailed project portfolio in PDF:</p>
-    <a href="files/TRI ARROW RESOURCES SITE CONSTRUCTION PROGRESS PICTURES.pdf"
-       target="_blank" class="pdf-link">Download Project Portfolio (PDF)</a>
-  </div>
-
-  <!-- LANDSCAPE -->
-  <div class="landscape-gallery">
-    <a class="image-card" href="images/photo_industrial_piping_2025-11-15.jpeg">
-      <img src="images/photo_industrial_piping_2025-11-15.jpeg">
-      <div class="caption">Industrial Piping</div>
-    </a>
-
-    <a class="image-card" href="images/Photo_Industrial_Piping_Scaffolding_2025-11-20.jpeg">
-      <img src="images/Photo_Industrial_Piping_Scaffolding_2025-11-20.jpeg">
-      <div class="caption">Industrial Piping Scaffolding</div>
-    </a>
-
-    <a class="image-card" href="images/photo_industrial_transformers_maintenance_2025-11-20.jpeg">
-      <img src="images/photo_industrial_transformers_maintenance_2025-11-20.jpeg">
-      <div class="caption">Transformers Maintenance</div>
-    </a>
-
-    <a class="image-card" href="images/Transformer_Photo_Industrial_Piping_2025_11_20.jpeg">
-      <img src="images/Transformer_Photo_Industrial_Piping_2025_11_20.jpeg">
-      <div class="caption">Transformer Piping</div>
-    </a>
-  </div>
-
-  <!-- PORTRAIT -->
-  <div class="portrait-gallery">
-    <a class="image-card" href="images/Photo_Piping-System_Red-and-Yellow.jpeg">
-      <img src="images/Photo_Piping-System_Red-and-Yellow.jpeg">
-      <div class="caption">Red & Yellow Piping</div>
-    </a>
-
-    <a class="image-card" href="images/Photo_Industrial_Piping_System_2025-11-20.jpeg">
-      <img src="images/Photo_Industrial_Piping_System_2025-11-20.jpeg">
-      <div class="caption">Industrial Piping System</div>
-    </a>
-
-    <a class="image-card" href="images/photo_fire_control_system_2025-11-15.jpeg">
-      <img src="images/photo_fire_control_system_2025-11-15.jpeg">
-      <div class="caption">Fire Control System</div>
-    </a>
-
-    <a class="image-card" href="images/Wila_Trans_Engineering_Grid_Maintenance_Briefing_2025-11-20.jpeg">
-      <img src="images/Wila_Trans_Engineering_Grid_Maintenance_Briefing_2025-11-20.jpeg">
-      <div class="caption">Grid Maintenance</div>
-    </a>
-
-    <a class="image-card" href="images/Wila_Trans_Engineering_Site_Meeting_2025-11-20.jpeg">
-      <img src="images/Wila_Trans_Engineering_Site_Meeting_2025-11-20.jpeg">
-      <div class="caption">Site Meeting</div>
-    </a>
-
-    <a class="image-card" href="images/photo_industrial-equipment_cable-shaft.jpeg">
-      <img src="images/photo_industrial-equipment_cable-shaft.jpeg">
-      <div class="caption">Cable Shaft System</div>
-    </a>
-
-    <a class="image-card" href="images/Welding_Worker_Industrial.jpeg">
-      <img src="images/Welding_Worker_Industrial.jpeg">
-      <div class="caption">Welding Worker</div>
-    </a>
-
-    <a class="image-card" href="images/Pipes_Building_Colored_2025-11-20.jpeg">
-      <img src="images/Pipes_Building_Colored_2025-11-20.jpeg">
-      <div class="caption">Colored Pipes</div>
-    </a>
-
-    <a class="image-card" href="images/welding_photo_2025-11-15.jpeg">
-      <img src="images/welding_photo_2025-11-15.jpeg">
-      <div class="caption">Welding Operation</div>
-    </a>
-  </div>
-</div>
-
-<!-- CONTACT SECTION -->
-<div class="section">
-  <h2>Contact Details</h2>
+  <h2>Contact Information</h2>
   <div class="contact-info">
     <p><strong>Engineering Manager:</strong> Shan Maran</p>
-    <p><strong>Phone:</strong> 010-3603021</p>
-    <p><strong>Email:</strong> triarrowr@gmail.com</p>
+    <p><strong>Phone Number:</strong> 010-3603021</p>
+    <p><strong>Email:</strong> <a href="mailto:triarrowr@gmail.com" style="color:#0066cc; text-decoration:none;">triarrowr@gmail.com</a></p>
+    <p><strong>Address:</strong> 81, Jalan Anggerik Aranda 31/2, Kota Kemuning, 40460, Shah Alam, Selangor</p>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div id="lightbox" class="lightbox">
-  <span class="lightbox-close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
+<div class="section">
+  <h2>Send Us a Message</h2>
+  <form>
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="Your Email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="message">Message</label>
+      <textarea id="message" rows="6" placeholder="Type your message here..." required></textarea>
+    </div>
+
+    <button type="submit">Send Message</button>
+  </form>
 </div>
 
 <footer>
@@ -400,32 +228,14 @@
 </footer>
 
 <script>
-  // Lightbox functionality
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const closeBtn = document.querySelector('.lightbox-close');
-
-  document.querySelectorAll('.image-card').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      lightbox.style.display = 'block';
-      lightboxImg.src = link.href;
-    });
-  });
-
-  closeBtn.addEventListener('click', () => lightbox.style.display = 'none');
-  lightbox.addEventListener('click', e => { 
-    if(e.target !== lightboxImg) lightbox.style.display = 'none'; 
-  });
-
-  // Enhanced animation for all elements
-  const animated = document.querySelectorAll('.section, .content-card, .image-card, .pdf-container, .contact-info p');
+  // Enhanced animation - same as index
+  const animated = document.querySelectorAll('.section, .contact-info p, .form-group, button');
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
         entry.target.style.opacity = 1;
         entry.target.style.transform = "translateY(0)";
-        if(entry.target.classList.contains('content-card') || entry.target.classList.contains('contact-info p')) {
+        if(entry.target.classList.contains('contact-info p')) {
           entry.target.style.transform = "translateX(0)";
         }
         obs.unobserve(entry.target);
