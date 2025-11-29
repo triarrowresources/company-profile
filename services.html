@@ -6,7 +6,7 @@
 <title>Services - Tri Arrow Resources</title>
 
 <style>
-  body {font-family: 'Arial', sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333;}
+  body {font-family: 'Arial', sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333; overflow-x: hidden;}
 
   /* PREMIUM GLASSMORPHISM NAV BAR */
   .glass-nav {
@@ -30,17 +30,17 @@
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .glass-nav:hover {
-    background: rgba(255, 255, 255, 0.2);
+  .glass-nav.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(30px) saturate(200%);
     box-shadow: 
       0 12px 40px rgba(0, 70, 153, 0.15),
-      0 6px 20px rgba(255, 255, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transform: translateX(-50%) translateY(-2px);
+      0 6px 20px rgba(255, 255, 255, 0.2);
   }
 
+  /* NAV LINK STYLES - UPDATED FOR BETTER VISIBILITY */
   .nav-link {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.95);
     text-decoration: none;
     padding: 12px 20px;
     border-radius: 12px;
@@ -51,7 +51,26 @@
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  /* SCROLLED STATE - DARK TEXT */
+  .glass-nav.scrolled .nav-link {
+    color: #004a99 !important;
+    text-shadow: none !important;
+  }
+
+  .glass-nav.scrolled .nav-link:hover {
+    background: rgba(0, 70, 153, 0.1) !important;
+    color: #003366 !important;
+  }
+
+  .glass-nav.scrolled .nav-link.active {
+    background: rgba(0, 70, 153, 0.15) !important;
+    color: #003366 !important;
+    box-shadow: 
+      inset 0 2px 4px rgba(0, 70, 153, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1) !important;
   }
 
   .nav-link::before {
@@ -89,6 +108,15 @@
       0 2px 8px rgba(0, 0, 0, 0.1);
   }
 
+  .glass-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 12px 40px rgba(0, 70, 153, 0.15),
+      0 6px 20px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) translateY(-2px);
+  }
+
   /* Mobile Responsive */
   @media (max-width: 768px) {
     .glass-nav {
@@ -116,7 +144,7 @@
     }
   }
 
-  /* HERO BANNER - Clean without blue overlay */
+  /* ENHANCED HERO BANNER - CLEAN ORIGINAL LOOK */
   .hero-section {
     position: relative;
     width: 100%;
@@ -127,96 +155,257 @@
     justify-content: center;
     text-align: center;
     color: white;
+    overflow: hidden;
   }
-  
-  .hero-section .overlay {
+
+  /* REMOVED BLUE GRADIENT - ONLY KEEP DARK OVERLAY FOR TEXT READABILITY */
+  .hero-section::before {
+    content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
   }
   
   .hero-content {
     position: relative;
     z-index: 2;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+  }
+
+  .hero-content.scrolled {
+    transform: translateY(-50px);
+    opacity: 0.7;
   }
   
   .hero-content h1 {
+    font-size: 4rem;
+    margin: 0 0 25px 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-weight: 800;
+    letter-spacing: 2px;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+  }
+
+  .hero-content.scrolled h1 {
+    transform: translateY(-20px);
     font-size: 3.5rem;
-    margin: 0 0 20px 0;
-    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    font-weight: 700;
-    letter-spacing: 1px;
   }
   
   .hero-content p {
     margin-top: 0;
-    font-size: 1.4rem;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-size: 1.6rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
     font-weight: 300;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+  }
+
+  .hero-content.scrolled p {
+    transform: translateY(-15px);
+    font-size: 1.4rem;
+  }
+
+  /* Scroll Down Indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    animation: bounce 2s infinite;
+    z-index: 2;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+  }
+
+  .scroll-indicator:hover {
+    opacity: 1;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+
+  /* TRANSITION ELEMENT */
+  .transition-element {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent, #f4f4f4);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ENHANCED CONTENT SECTIONS */
+  .content-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+
+  .section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 25px;
+    background: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease;
+  }
+
+  .section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section:nth-child(even) {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+  }
+
+  .section:nth-child(odd) {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  }
+
+  /* First section special styling */
+  .section:first-of-type {
+    border-radius: 30px 30px 0 0;
+    margin-top: -50px;
+    padding-top: 80px;
+    background: white;
+    box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 3;
+  }
+
+  h2 {
+    color: #0066cc;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 15px;
+  }
+
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #0066cc, #004a99);
+    border-radius: 2px;
+  }
+  
+  h3 {
+    margin-top: 25px; 
+    color: #004a99;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
+
+  /* Service Items */
+  .service-item {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    margin: 20px 0;
+    border-left: 5px solid #0066cc;
+    border-radius: 0 15px 15px 0;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s ease;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  .service-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .service-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  ul {
+    line-height: 1.8; 
+    font-size: 17px; 
+    padding-left: 25px;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    position: relative;
+  }
+
+  li::before {
+    content: '▸';
+    color: #0066cc;
+    font-weight: bold;
+    position: absolute;
+    left: -20px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 40px 25px;
+    margin-top: 0;
+    background: linear-gradient(135deg, #222, #333);
+    color: white;
+    border-radius: 30px 30px 0 0;
   }
 
   @media (max-width: 768px) {
     .hero-content h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
     }
     
     .hero-content p {
+      font-size: 1.3rem;
+    }
+
+    .hero-content.scrolled h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero-content.scrolled p {
       font-size: 1.2rem;
     }
-  }
 
-  /* Add some spacing for content below hero */
-  .content-wrapper {
-    margin-top: -80px;
-    position: relative;
-    z-index: 1;
-  }
+    h2 {
+      font-size: 2rem;
+    }
 
-  /* PAGE SECTIONS */
-  .section {
-    max-width:1100px;
-    margin:auto;
-    padding:30px 25px;
-    background:white;
-    margin-top:20px;
-    margin-bottom:20px;
-    border-radius:12px;
-    box-shadow:0 8px 18px rgba(0,0,0,0.1);
-  }
-  
-  h2 {
-    color:#0066cc;
-    margin-bottom:20px;
-    text-align:center;
-  }
-  
-  h3 {margin-top:15px; color:#004a99;}
-
-  /* Service Items */
-  .service-item {
-    background: #f8f9fa;
-    padding: 25px;
-    margin: 20px 0;
-    border-left: 4px solid #0066cc;
-    border-radius: 0 8px 8px 0;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .service-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  }
-  
-  ul {line-height:1.8; font-size:17px; padding-left:20px;}
-  li {margin-bottom:8px;}
-
-  footer {
-    text-align:center;
-    padding:25px;
-    margin-top:30px;
-    background:#222;
-    color:white;
+    .section:first-of-type {
+      margin-top: -30px;
+      padding-top: 60px;
+    }
   }
 
 </style>
@@ -226,23 +415,30 @@
 <!-- HERO BANNER -->
 <header class="hero-section">
   <!-- PREMIUM GLASSMORPHISM NAV BAR -->
-  <nav class="glass-nav">
+  <nav class="glass-nav" id="mainNav">
     <a href="index.html" class="nav-link">Home</a>
     <a href="services.html" class="nav-link active">Services</a>
     <a href="projects.html" class="nav-link">Projects</a>
     <a href="contact.html" class="nav-link">Contact</a>
   </nav>
   
-  <div class="overlay"></div>
-  <div class="hero-content">
+  <div class="hero-content" id="heroContent">
     <h1>OUR SERVICES</h1>
     <p>Professional Mechanical & Piping Solutions</p>
   </div>
+
+  <!-- Scroll Down Indicator -->
+  <div class="scroll-indicator" onclick="scrollToContent()">
+    ↓
+  </div>
+
+  <!-- Smooth Transition Element -->
+  <div class="transition-element"></div>
 </header>
 
 <!-- Content Wrapper -->
 <div class="content-wrapper">
-  <div class="section">
+  <div class="section" id="coreServices">
     <h2>CORE SERVICES</h2>
     
     <div class="service-item">
@@ -308,6 +504,75 @@
     if(link.getAttribute('href') === currentPage) {
       link.classList.add('active');
     }
+  });
+
+  // Scroll Animations and Effects
+  function scrollToContent() {
+    document.querySelector('.content-wrapper').scrollIntoView({ 
+      behavior: 'smooth' 
+    });
+  }
+
+  // Scroll event listener for animations
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroContent = document.getElementById('heroContent');
+    const nav = document.getElementById('mainNav');
+    const sections = document.querySelectorAll('.section');
+    const serviceItems = document.querySelectorAll('.service-item');
+
+    // Hero content parallax effect
+    if (heroContent) {
+      if (scrolled > 50) {
+        heroContent.classList.add('scrolled');
+      } else {
+        heroContent.classList.remove('scrolled');
+      }
+    }
+
+    // Navbar background and text color change on scroll
+    if (nav) {
+      if (scrolled > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    }
+
+    // Section animations
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (sectionTop < windowHeight * 0.85) {
+        section.classList.add('visible');
+      }
+    });
+
+    // Service item animations with staggered delay
+    serviceItems.forEach((item, index) => {
+      const itemTop = item.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+      
+      if (itemTop < windowHeight * 0.85) {
+        setTimeout(() => {
+          item.classList.add('visible');
+        }, index * 150); // Stagger animation
+      }
+    });
+  });
+
+  // Trigger initial animations
+  window.dispatchEvent(new Event('scroll'));
+
+  // Add loading animation
+  window.addEventListener('load', () => {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.5s ease';
+    
+    setTimeout(() => {
+      document.body.style.opacity = '1';
+    }, 100);
   });
 </script>
 
