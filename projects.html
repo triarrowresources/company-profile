@@ -264,7 +264,7 @@
   .section {
     max-width: 1100px;
     margin: auto;
-    padding: 60px 25px;
+    padding: 40px 25px; /* Reduced padding to reduce space between sections */
     background: white;
     margin-top: 0;
     margin-bottom: 0;
@@ -352,30 +352,37 @@
     box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
   }
 
-  /* GALLERY */
-  .landscape-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px; 
-    margin-bottom: 30px;
+  /* ENHANCED GALLERY SECTION */
+  .gallery-section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 40px 25px; /* Reduced padding to reduce space */
+    background: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: none;
   }
-  
-  .portrait-gallery {
+
+  /* IMPROVED GALLERY GRID LAYOUT */
+  .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 15px; 
-    margin-top: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
   }
 
   .image-card {
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s ease;
+    border-radius: 16px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
     transform: translateY(30px);
+    background: white;
+    aspect-ratio: 4/3;
   }
 
   .image-card.visible {
@@ -385,19 +392,36 @@
   
   .image-card img {
     width: 100%; 
-    height: 220px;
+    height: 100%;
     object-fit: cover;
     display: block; 
-    transition: transform 0.4s ease;
+    transition: transform 0.5s ease;
   }
   
   .image-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
   
   .image-card:hover {
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transform: translateY(-12px);
+  }
+
+  .image-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    border-radius: 16px;
+  }
+  
+  .image-card:hover::after {
+    opacity: 1;
   }
   
   .caption {
@@ -405,21 +429,23 @@
     bottom: 0; 
     left: 0;
     width: 100%;
-    padding: 15px;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 20px 15px 15px;
     color: white; 
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
     opacity: 0; 
-    transition: opacity 0.3s ease;
+    transition: all 0.4s ease;
+    z-index: 2;
+    transform: translateY(10px);
   }
   
   .image-card:hover .caption {
     opacity: 1;
+    transform: translateY(0);
   }
 
-  /* LIGHTBOX */
+  /* ENHANCED LIGHTBOX */
   .lightbox {
     display: none;
     position: fixed;
@@ -503,8 +529,16 @@
       padding-top: 60px;
     }
 
-    .landscape-gallery {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      gap: 15px;
     }
   }
 
@@ -546,8 +580,8 @@
       <a href="files/TRI ARROW RESOURCES SITE CONSTRUCTION PROGRESS PICTURES.pdf" target="_blank" class="pdf-link">Download Project Portfolio (PDF)</a>
     </div>
 
-    <!-- Landscape images -->
-    <div class="landscape-gallery">
+    <!-- Unified Gallery Grid -->
+    <div class="gallery-grid">
       <a class="image-card" href="images/photo_industrial_piping_2025-11-15.jpeg">
         <img src="images/photo_industrial_piping_2025-11-15.jpeg" alt="Industrial Piping">
         <div class="caption">Industrial Piping</div>
@@ -564,10 +598,6 @@
         <img src="images/Transformer_Photo_Industrial_Piping_2025_11_20.jpeg" alt="Transformer Piping">
         <div class="caption">Transformer Piping</div>
       </a>
-    </div>
-
-    <!-- Portrait images -->
-    <div class="portrait-gallery">
       <a class="image-card" href="images/Photo_Piping-System_Red-and-Yellow.jpeg">
         <img src="images/Photo_Piping-System_Red-and-Yellow.jpeg" alt="Red & Yellow">
         <div class="caption">Red & Yellow Piping</div>
