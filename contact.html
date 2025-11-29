@@ -6,80 +6,185 @@
 <title>Contact - Tri Arrow Resources</title>
 
 <style>
-  body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333;}
+  body {font-family: 'Arial', sans-serif; margin:0; padding:0; background:#f4f4f4; color:#333;}
 
-  /* HERO BANNER - Same as index */
+  /* PREMIUM GLASSMORPHISM NAV BAR */
+  .glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 12px 24px;
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+    box-shadow: 
+      0 8px 32px rgba(0, 70, 153, 0.1),
+      0 4px 16px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .glass-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 12px 40px rgba(0, 70, 153, 0.15),
+      0 6px 20px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateX(-50%) translateY(-2px);
+  }
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(255, 255, 255, 0.1), 
+      transparent);
+    transition: left 0.6s ease;
+  }
+
+  .nav-link:hover::before {
+    left: 100%;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 
+      0 4px 12px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .nav-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 
+      inset 0 2px 4px rgba(255, 255, 255, 0.2),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .glass-nav {
+      top: 10px;
+      padding: 10px 16px;
+      border-radius: 14px;
+    }
+    
+    .nav-link {
+      padding: 10px 14px;
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .glass-nav {
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 90%;
+    }
+    
+    .nav-link {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+  }
+
+  /* HERO BANNER - Clean without blue overlay */
   .hero-section {
     position: relative;
     width: 100%;
-    height: 260px;
+    height: 100vh;
     background: url('images/banner.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    animation: slideDown 1s ease;
   }
+  
   .hero-section .overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.3);
   }
+  
   .hero-content {
     position: relative;
     z-index: 2;
   }
+  
   .hero-content h1 {
-    font-size: 2.4rem;
-    margin: 0;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    font-size: 3.5rem;
+    margin: 0 0 20px 0;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    font-weight: 700;
+    letter-spacing: 1px;
   }
+  
   .hero-content p {
-    margin-top: 10px;
-    font-size: 1.2rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-  }
-  @media (max-width: 600px) {
-    .hero-section {height: 180px;}
-    .hero-content h1 {font-size: 1.7rem;}
-    .hero-content p {font-size: 1rem;}
+    margin-top: 0;
+    font-size: 1.4rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 300;
+    letter-spacing: 0.5px;
   }
 
-  /* NAVIGATION - Same as index */
-  nav {
-    background:#004a99;
-    padding:12px;
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:10px;
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+      font-size: 1.2rem;
+    }
   }
-  nav a {
-    color:white;
-    padding:8px 18px;
-    text-decoration:none;
-    font-weight:bold;
-    border-radius:6px;
-    transition:0.3s;
-    text-align:center;
-    white-space:nowrap;
-  }
-  nav a:hover {background:#003366;}
 
-  /* PAGE SECTIONS - Same as index */
+  /* Add some spacing for content below hero */
+  .content-wrapper {
+    margin-top: -80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* PAGE SECTIONS */
   .section {
     max-width:1100px;
     margin:auto;
-    padding:40px 25px;
+    padding:30px 25px;
     background:white;
-    margin-top:25px;
+    margin-top:20px;
+    margin-bottom:20px;
     border-radius:12px;
     box-shadow:0 8px 18px rgba(0,0,0,0.1);
-    opacity:0;
-    transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
   }
+  
   h2 {
     color:#0066cc;
     margin-bottom:20px;
@@ -91,21 +196,25 @@
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:20px;
-    font-size:18px;
+    gap:15px;
+    font-size:17px;
     line-height:1.6;
   }
+  
   .contact-info p {
     margin:0;
-    padding:15px 25px;
+    padding:15px 20px;
     background:#f8f9fa;
     border-radius:8px;
     border-left:4px solid #0066cc;
     width:100%;
     max-width:500px;
-    opacity:0;
-    transform: translateX(-20px);
-    transition: all 0.6s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .contact-info p:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   }
   
   /* Form Styling */
@@ -114,17 +223,19 @@
     flex-direction:column;
     gap:20px;
   }
+  
   .form-group {
-    opacity:0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+    display: flex;
+    flex-direction: column;
   }
+  
   label {
     font-weight:bold;
     display:block;
     margin-bottom:8px;
     color:#004a99;
   }
+  
   input, textarea {
     padding:14px;
     border-radius:8px;
@@ -133,12 +244,15 @@
     width:100%;
     box-sizing:border-box;
     transition:0.3s;
+    font-family: Arial, sans-serif;
   }
+  
   input:focus, textarea:focus {
     outline:none;
     border-color:#0066cc;
     box-shadow:0 0 0 3px rgba(0,102,204,0.1);
   }
+  
   button {
     padding:16px 30px;
     background:#0066cc;
@@ -149,33 +263,37 @@
     cursor:pointer;
     font-size:17px;
     transition:0.3s;
-    opacity:0;
-    transform: translateY(20px);
+    margin-top: 10px;
   }
+  
   button:hover {
     background:#004a99;
-    transform: scale(1.03) translateY(-2px);
+    transform: translateY(-2px);
     box-shadow:0 5px 15px rgba(0,0,0,0.2);
   }
 
   footer {
     text-align:center;
-    padding:30px;
-    margin-top:40px;
+    padding:25px;
+    margin-top:30px;
     background:#222;
     color:white;
   }
-
-  /* ANIMATIONS - Same as index */
-  @keyframes fadeIn {from{opacity:0;} to{opacity:1;}}
-  @keyframes slideDown {from{transform:translateY(-30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
 
 </style>
 </head>
 <body>
 
-<!-- HERO BANNER - Same as index -->
+<!-- HERO BANNER -->
 <header class="hero-section">
+  <!-- PREMIUM GLASSMORPHISM NAV BAR -->
+  <nav class="glass-nav">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="services.html" class="nav-link">Services</a>
+    <a href="projects.html" class="nav-link">Projects</a>
+    <a href="contact.html" class="nav-link active">Contact</a>
+  </nav>
+  
   <div class="overlay"></div>
   <div class="hero-content">
     <h1>Contact Us</h1>
@@ -183,44 +301,62 @@
   </div>
 </header>
 
-<!-- NAVBAR - Same as index -->
-<nav>
-  <a href="index.html">Home</a>
-  <a href="services.html">Services</a>
-  <a href="projects.html">Projects</a>
-  <a href="contact.html">Contact</a>
-</nav>
-
-<div class="section">
-  <h2>Contact Information</h2>
-  <div class="contact-info">
-    <p><strong>Engineering Manager:</strong> Shan Maran</p>
-    <p><strong>Phone Number:</strong> 010-3603021</p>
-    <p><strong>Email:</strong> <a href="mailto:triarrowr@gmail.com" style="color:#0066cc; text-decoration:none;">triarrowr@gmail.com</a></p>
-    <p><strong>Address:</strong> 81, Jalan Anggerik Aranda 31/2, Kota Kemuning, 40460, Shah Alam, Selangor</p>
+<!-- Content Wrapper -->
+<div class="content-wrapper">
+  <div class="section">
+    <h2>Contact Information</h2>
+    <div class="contact-info">
+      <p><strong>Engineering Manager:</strong> Shan Maran</p>
+      <p><strong>Phone Number:</strong> 010-3603021</p>
+      <p><strong>Email:</strong> <a href="mailto:triarrowr@gmail.com" style="color:#0066cc; text-decoration:none;">triarrowr@gmail.com</a></p>
+      <p><strong>Address:</strong> 81, Jalan Anggerik Aranda 31/2, Kota Kemuning, 40460, Shah Alam, Selangor</p>
+    </div>
   </div>
-</div>
 
-<div class="section">
-  <h2>Send Us a Message</h2>
-  <form>
-    <div class="form-group">
-      <label for="name">Full Name</label>
-      <input type="text" id="name" placeholder="Your Name" required>
-    </div>
+  <div class="section">
+    <h2>Send Us a Message</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Your Name" required>
+      </div>
 
-    <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" id="email" placeholder="Your Email" required>
-    </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Your Email" required>
+      </div>
 
-    <div class="form-group">
-      <label for="message">Message</label>
-      <textarea id="message" rows="6" placeholder="Type your message here..." required></textarea>
-    </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="Your Phone Number">
+      </div>
 
-    <button type="submit">Send Message</button>
-  </form>
+      <div class="form-group">
+        <label for="company">Company (Optional)</label>
+        <input type="text" id="company" placeholder="Your Company Name">
+      </div>
+
+      <div class="form-group">
+        <label for="service">Service Interested In</label>
+        <select id="service" style="padding:14px; border-radius:8px; border:1px solid #ddd; font-size:16px;">
+          <option value="">Select a service</option>
+          <option value="piping">Piping Works</option>
+          <option value="mechanical">Mechanical Works</option>
+          <option value="fabrication">Fabrication</option>
+          <option value="testing">Testing & Commissioning</option>
+          <option value="maintenance">Maintenance & Support</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" rows="6" placeholder="Type your message here..." required></textarea>
+      </div>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
 </div>
 
 <footer>
@@ -228,22 +364,33 @@
 </footer>
 
 <script>
-  // Enhanced animation - same as index
-  const animated = document.querySelectorAll('.section, .contact-info p, .form-group, button');
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.style.opacity = 1;
-        entry.target.style.transform = "translateY(0)";
-        if(entry.target.classList.contains('contact-info p')) {
-          entry.target.style.transform = "translateX(0)";
-        }
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.15});
-  
-  animated.forEach(el => observer.observe(el));
+  // Add active class to current page nav link
+  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link').forEach(link => {
+    if(link.getAttribute('href') === currentPage) {
+      link.classList.add('active');
+    }
+  });
+
+  // Form submission handling
+  const contactForm = document.querySelector('form');
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(this);
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    
+    // Simple validation
+    if (name && email) {
+      // Show success message (in a real application, you would send this to a server)
+      alert('Thank you for your message, ' + name + '! We will get back to you soon at ' + email + '.');
+      this.reset();
+    } else {
+      alert('Please fill in all required fields.');
+    }
+  });
 </script>
 
 </body>
